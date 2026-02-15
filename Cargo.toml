@@ -1,0 +1,17 @@
+[package]
+name = "hands_on_rust"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+
+
+[workspace]
+members = ["hello_bterm","hello_world"]
+
+
+
+
+[workspace.dependencies]
+bracket-lib = "~0.8.7"
