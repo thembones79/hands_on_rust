@@ -16,6 +16,18 @@ impl State {
             mode: GameMode::Menu,
         }
     }
+    fn play(&mut self, ctx: &mut BTerm){
+        //TODO: Fill later this stub
+
+        self.mode = GameMode::End;
+    }
+    fn restart(&mut self){
+        self.mode=GameMode::Playing;
+    }
+    fn main_menu(&mut self, ctx: &mut BTerm){
+        ctx.cls();
+        ctx.print_centered(5,"Welcome to Flappy Dragon");
+    }
 }
 
 impl GameState for State {
