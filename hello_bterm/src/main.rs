@@ -128,6 +128,8 @@ impl State {
     fn restart(&mut self) {
         self.mode = GameMode::Playing;
         self.frame_time = 0.0;
+        self.score = 0;
+        self.obstacle = Obstacle::new(SCREEN_WIDTH, 0);
         self.player = Player::new(5, 25);
     }
     fn main_menu(&mut self, ctx: &mut BTerm) {
@@ -147,6 +149,7 @@ impl State {
     fn dead(&mut self, ctx: &mut BTerm) {
         ctx.cls();
         ctx.print_centered(5, "You are dead!");
+        ctx.print_centered(6, &format!("You earned {} points", self.score));
         ctx.print_centered(8, "(P) Play Again");
         ctx.print_centered(9, "(Q) Quit Game");
 
