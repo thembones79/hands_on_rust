@@ -8,7 +8,7 @@ edition = "2024"
 
 
 [workspace]
-members = ["hello_bterm","hello_world"]
+members = ["dungeon_crawl","hello_bterm","hello_world"]
 
 
 
