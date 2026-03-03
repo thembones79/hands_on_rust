@@ -21,6 +21,9 @@ impl Map {
             tiles: vec![TileType::Floor; NUM_TILES],
         }
     }
+    pub fn in_bounds(&self, point: Point) -> bool {
+        point.x >= 0 && point.x < SCREEN_WIDTH && point.y >= 0 && point.y < SCREEN_HEIGHT
+    }
     pub fn render(&self, ctx: &mut BTerm) {
         for y in 0..SCREEN_HEIGHT {
             for x in 0..SCREEN_WIDTH {
