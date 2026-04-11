@@ -20,6 +20,7 @@ impl MapBuilder {
                 rng.range(2, 10),
                 rng.range(2, 10),
             );
+            let mut overlap = false;
         }
     }
 }
