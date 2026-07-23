@@ -55,11 +55,15 @@ impl MapBuilder {
     }
     fn build_corridors(&mut self, rng: &mut RandomNumberGenerator) {
         let mut rooms = self.rooms.clone();
-        rooms.sort_by(|a,b| a.center().x.cmp(&b.center().x));
+        rooms.sort_by(|a, b| a.center().x.cmp(&b.center().x));
 
         for (i, room) in rooms.iter().enumerate().skip(1) {
+            let prev = rooms[i - 1].center();
+            let new = room.center();
 
+            if rng.range(0, 2) == 1 {
+                self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
+            }
         }
-
     }
 }
