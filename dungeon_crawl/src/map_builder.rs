@@ -70,4 +70,12 @@ impl MapBuilder {
             }
         }
     }
+    pub fn new(tng: &mut RandomNumberGenerator) -> Self {
+        let mut mb = MapBuilder {
+            map: Map::new(),
+            rooms: Vec::new(),
+            player_start: Point::zero(),
+        };
+        mb
+    }
 }
