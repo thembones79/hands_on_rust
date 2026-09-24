@@ -12,7 +12,8 @@ impl Camera {
         Self{
             left_x: player_position.x - DISPLAY_WIDTH/2,
             right_x: player_position.x + DISPLAY_WIDTH/2,
-            top_y: player_position.x - DISPLAY_WIDTH/2,
+            top_y: player_position.x - DISPLAY_HEIGHT/2,
+            bottom_y: player_position.y - DISPLAY_HEIGHT/2,
         }
     }
 }
