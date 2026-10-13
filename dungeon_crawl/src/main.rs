@@ -1,8 +1,10 @@
 mod camera;
+mod components;
 mod map;
 mod map_builder;
 mod player;
-mod components;
+mod spawner;
+mod systems;
 
 mod prelude {
     pub use bracket_lib::prelude::*;
@@ -12,9 +14,11 @@ mod prelude {
     pub const SCREEN_WIDTH: i32 = 80;
     pub const SCREEN_HEIGHT: i32 = 50;
     pub use crate::camera::*;
+    pub use crate::components::*;
     pub use crate::map::*;
     pub use crate::map_builder::*;
-    pub use crate::components::*;
+    pub use crate::spawner::*;
+    pub use crate::systems::*;
 
     pub const DISPLAY_WIDTH: i32 = SCREEN_WIDTH / 2;
     pub const DISPLAY_HEIGHT: i32 = SCREEN_HEIGHT / 2;
@@ -34,6 +38,7 @@ impl State {
         let mut resources = Resources::default();
         let mut rng = RandomNumberGenerator::new();
         let map_builder = MapBuilder::new(&mut rng);
+        spawn_player(&mut ecs, map_builder.player_start);
         resources.insert(map_builder.map);
         resources.insert(Camera::new(map_builder.player_start));
         Self {
@@ -53,7 +58,8 @@ impl GameState for State {
         // self.player.update(ctx, &self.map, &mut self.camera);
         // self.map.render(ctx, &self.camera);
         // self.player.render(ctx, &self.camera);
-        //  TODO: Execute Systems
+        self.resources.insert(ctx.key);
+        self.systems.execute(&mut self.ecs, &mut self.resources);
         //  TODO: Render Draw Buffer
     }
 }
